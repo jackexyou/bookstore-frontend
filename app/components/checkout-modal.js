@@ -1,0 +1,11 @@
+// app/components/checkout-modal.js
+
+import Ember from 'ember';
+
+export default Ember.Component.extend({
+  actions: {
+    close: function() {
+      return this.sendAction('close');
+    }
+  }
+});
