@@ -1,4 +1,23 @@
-import JSONAPIAdapter from 'ember-data/adapters/json-api';
+// app/adapter/application.js
 
-export default JSONAPIAdapter.extend({
+import DS from 'ember-data';
+
+export default DS.JSONAPIAdapter.extend({
+
+  shouldReloadRecord(store, snapshot) {
+    return false;
+  },
+
+  shouldBackgroundReloadRecord(store, snapshot) {
+    console.log("Calling shouldBackgroundReloadRecord");
+    const loadedAt = snapshot.record.get('loadedAt');
+
+    // if it was loaded more than an hour ago
+    if (Date.now() - loadedAt > 3600000) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 });

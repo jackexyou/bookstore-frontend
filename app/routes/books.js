@@ -12,7 +12,7 @@ export default Ember.Route.extend({
       return this.render('modal', {
         outlet: 'modal',
         into: 'application',
-        model: book,
+        model: this.store.findRecord('book', book.id, { reload: true }),
         controller: 'application'
       });
     },
